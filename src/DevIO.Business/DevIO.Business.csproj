@@ -5,10 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Validations\**" />
+    <EmbeddedResource Remove="Validations\**" />
+    <None Remove="Validations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Notifications\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Validations\" />
     <Folder Include="Services\" />
+    <Folder Include="Validation\" />
   </ItemGroup>
 
 </Project>
