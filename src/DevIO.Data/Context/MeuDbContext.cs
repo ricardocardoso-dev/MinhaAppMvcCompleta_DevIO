@@ -1,6 +1,6 @@
-﻿using DevIO.Business.Models;
+﻿using System.Linq;
+using DevIO.Business.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace DevIO.Data.Context
 {

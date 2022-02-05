@@ -1,6 +1,6 @@
-﻿using DevIO.Business.Models;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using DevIO.Business.Models;
 
 namespace DevIO.Business.Interfaces
 {
