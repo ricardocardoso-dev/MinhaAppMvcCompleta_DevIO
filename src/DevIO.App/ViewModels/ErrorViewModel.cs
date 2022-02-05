@@ -1,5 +1,3 @@
-using System;
-
 namespace DevIO.App.Models
 {
     public class ErrorViewModel
