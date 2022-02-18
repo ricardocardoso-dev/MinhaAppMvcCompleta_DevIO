@@ -1,19 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Validations\**" />
-    <EmbeddedResource Remove="Validations\**" />
-    <None Remove="Validations\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Notifications\" />
-    <Folder Include="Services\" />
-    <Folder Include="Validation\" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="FluentValidation" Version="10.3.3" />
+    </ItemGroup>
 
 </Project>
