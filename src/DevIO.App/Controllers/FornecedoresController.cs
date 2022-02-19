@@ -12,16 +12,21 @@ namespace DevIO.App.Controllers
 
     public class FornecedoresController : Controller
     {
+        #region Declarations
         private readonly IFornecedorRepository _fornecedorRepository;
         private readonly IMapper _mapper;
+        #endregion
 
+        #region Constructor
         public FornecedoresController(IFornecedorRepository fornecedorRepository,
-                                      IMapper mapper)
+                                     IMapper mapper)
         {
             _fornecedorRepository = fornecedorRepository;
             _mapper = mapper;
         }
+        #endregion
 
+        #region Methods
         public async Task<IActionResult> Index()
         {
             return View(_mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos()));
@@ -115,6 +120,7 @@ namespace DevIO.App.Controllers
         private async Task<FornecedorViewModel> ObterFornecedorProdutosEndereco(Guid id)
         {
             return _mapper.Map<FornecedorViewModel>(await _fornecedorRepository.ObterFornecedorProdutosEndereco(id));
-        }
+        } 
+        #endregion
     }
 }

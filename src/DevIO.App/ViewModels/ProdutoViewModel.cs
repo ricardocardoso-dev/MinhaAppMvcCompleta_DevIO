@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
@@ -25,7 +26,7 @@ namespace DevIO.App.ViewModels
         [StringLength(200, ErrorMessage = "O campo {0} precisa ter entre {2} e {1} caracteres", MinimumLength = 2)]
         public string Descricao { get; set; }
 
-        //public IFormFile ImagemUpload { get; set; }
+        public IFormFile ImagemUpload { get; set; }
 
         public string Imagem { get; set; }
 
@@ -40,5 +41,7 @@ namespace DevIO.App.ViewModels
 
         /* EF Relations */
         public FornecedorViewModel Fornecedor { get; set; }
+
+        public IEnumerable<FornecedorViewModel> Fornecedores { get; set; }
     }
 }
