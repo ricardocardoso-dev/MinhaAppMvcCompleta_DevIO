@@ -4,9 +4,7 @@
     ViewData["Title"] = "Novo Fornecedor";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-
+<h3 style="padding-top: 50px">@ViewData["Title"]</h3>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -39,8 +37,8 @@
             <partial name="_Endereco" />
 
             <div class="form-group">
-                <input type="submit" value="Cadastrar" class="btn btn-primary" />
                 <a class="btn btn-info" asp-action="Index">Voltar</a>
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
             </div>
         </form>
     </div>

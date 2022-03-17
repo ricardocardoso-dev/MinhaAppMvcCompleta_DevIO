@@ -1,16 +1,14 @@
 ﻿@model IEnumerable<DevIO.App.ViewModels.ProdutoViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Produtos";
 }
-
-<h1>@ViewData["Title"]</h1>
-
-<hr />
-<p>
+<div class="title-index">
+    <h3>@ViewData["Title"]</h3>
     <a class="btn btn-info" asp-action="Create">Novo Produto</a>
-</p>
-<table class="table table-hover">
+</div>
+<p></p>
+<table class="table table-hover grid-listagem">
     <thead class="thead-dark">
         <tr>
             <th>
@@ -37,6 +35,7 @@
         {
             <tr>
                 <td>
+                    <img src="~/imagens/@item.Imagem" alt="Imagem" style="width:70px; height:100px" />
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Nome)
