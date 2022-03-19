@@ -1,13 +1,13 @@
 ﻿@model DevIO.App.ViewModels.FornecedorViewModel
 
 @{
-    ViewData["Title"] = "Editar Fornecedor";
+    ViewData["Title"] = "Editar " + Model.Nome;
 }
 
 <h3 style="padding-top: 50px">@ViewData["Title"]</h3>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-10">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />

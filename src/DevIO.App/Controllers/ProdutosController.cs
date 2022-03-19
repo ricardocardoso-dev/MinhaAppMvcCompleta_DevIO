@@ -88,11 +88,32 @@ namespace DevIO.App.Controllers
         public async Task<IActionResult> Edit(Guid id, ProdutoViewModel produtoViewModel)
         {
             if (id != produtoViewModel.Id) return NotFound();
+
+            var produtoAtualizacao = await ObterProduto(id);
+            produtoViewModel.Fornecedor = produtoAtualizacao.Fornecedor;
+            produtoViewModel.Imagem = produtoAtualizacao.Imagem;
             if (!ModelState.IsValid) return View(produtoViewModel);
 
-            await _produtoRepository.Atualizar(_mapper.Map<Produto>(produtoViewModel));
+            if (produtoViewModel.ImagemUpload != null)
+            {
+                var imgPrefixo = Guid.NewGuid() + "_";
+                if (!await UploadArquivo(produtoViewModel.ImagemUpload, imgPrefixo))
+                {
+                    return View(produtoViewModel);
+                }
 
-            return RedirectToAction(nameof(Index));
+                produtoAtualizacao.Imagem = imgPrefixo + produtoViewModel.ImagemUpload.FileName;
+            }
+
+            produtoAtualizacao.Nome = produtoViewModel.Nome;
+            produtoAtualizacao.Descricao = produtoViewModel.Descricao;
+            produtoAtualizacao.Valor = produtoViewModel.Valor;
+            produtoAtualizacao.Ativo = produtoViewModel.Ativo;
+
+            await _produtoRepository.Atualizar(_mapper.Map<Produto>(produtoAtualizacao));
+            RemoverArquivo(  produtoViewModel.Imagem);
+
+            return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Delete(Guid id)
@@ -134,7 +155,7 @@ namespace DevIO.App.Controllers
         {
             if (arquivo.Length <= 0) return false;
 
-            var path = Path.Combine( Directory.GetCurrentDirectory(), "wwwroot/imagens",  imgPrefixo + arquivo.FileName);
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/imagens", imgPrefixo + arquivo.FileName);
 
             if (System.IO.File.Exists(path))
             {
@@ -149,6 +170,22 @@ namespace DevIO.App.Controllers
 
             return true;
         }
-        #endregion
+
+        private static bool RemoverArquivo(string nomeArquivo)
+        {
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/imagens", nomeArquivo);
+
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+
+                return true;
+            }
+
+            return false;
+        }
     }
+    #endregion
 }
+
+
