@@ -1,7 +1,7 @@
 ﻿@model DevIO.App.ViewModels.FornecedorViewModel
 
 @{
-    ViewData["Title"] = "Exclusão de " + Model.Nome;
+    ViewData["Title"] = "Exclusão de Fornecedor";
 }
 <h3 style="padding-top: 50px">@ViewData["Title"]</h3>
 <hr />
@@ -9,35 +9,15 @@
 <h5>Tem certeza que deseja excluir?</h5>
 <div>
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Documento)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Documento)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TipoFornecedor)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TipoFornecedor)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Ativo)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Ativo)
-        </dd>
+        <partial name="_BasicInfo" />
     </dl>
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <a asp-action="Index" class="btn btn-info">Voltar</a>
+        <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
         <input type="submit" value="Excluir" class="btn btn-danger" />
     </form>
 </div>
+
+
+<partial name="_DetalhesEndereco" />
